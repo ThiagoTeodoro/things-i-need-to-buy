@@ -1,22 +1,29 @@
 package main
 
 import (
-	"io"
 	"net/http"
 	"os"
 
 	"github.com/gorilla/mux"
+	"things.i.need.to.buy/src/router"
 )
 
-func hello(responseWriter http.ResponseWriter, request *http.Request) {
-	io.WriteString(responseWriter, "Hello World!")
+// App export
+type App struct {
+	Router mux.Router
 }
 
+/*
+	Main code init of application
+*/
 func main() {
 
-	myRouter := mux.NewRouter().StrictSlash(true)
-	myRouter.HandleFunc("/", hello)
+	app := App{
+		Router: router.RouterConfig(),
+	}
 
+	//This port is requirement buy Heroku configs.
 	port := os.Getenv("PORT")
-	http.ListenAndServe(":"+port, myRouter)
+	//port = "8080"
+	http.ListenAndServe(":"+port, &app.Router)
 }
