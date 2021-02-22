@@ -9,6 +9,7 @@ import (
 func RouterConfig() mux.Router {
 
 	myRouter := mux.NewRouter().StrictSlash(true)
+	myRouter.HandleFunc("/telegram/webhook", controller.TelegramWebhook)
 	myRouter.HandleFunc("/", controller.GetMainEntrypoint)
 
 	return *myRouter

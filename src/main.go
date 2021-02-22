@@ -24,6 +24,6 @@ func main() {
 
 	//This port is requirement buy Heroku configs.
 	port := os.Getenv("PORT")
-	//port = "8080"
+	port = "8080"
 	http.ListenAndServe(":"+port, &app.Router)
 }
