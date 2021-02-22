@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 
@@ -27,5 +28,5 @@ func TelegramWebhook(responseWriter http.ResponseWriter, request *http.Request) 
 
 	instance = append(instance, text)
 
-	io.WriteString(responseWriter, "OK")
+	io.WriteString(responseWriter, fmt.Sprint(instance))
 }
