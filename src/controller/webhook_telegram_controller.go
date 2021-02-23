@@ -24,7 +24,7 @@ func TelegramWebhook(responseWriter http.ResponseWriter, request *http.Request) 
 	}
 
 	message, _ := service.ParseTelegramMessage(request)
-	text := message.Message.Text
+	text := message.Message.Contact.PhoneNumber
 
 	instance = append(instance, text)
 
