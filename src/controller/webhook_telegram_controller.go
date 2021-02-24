@@ -12,7 +12,7 @@ import (
 func TelegramWebhook(responseWriter http.ResponseWriter, request *http.Request) {
 
 	message, _ := service.TelegramMessageParse(request)
-	text := "Bem vindo " + message.From.FirstName + " ao modulo Javis para armazenamento de lista, ainda estou em construção, em breve estarei em funcionamento."
+	text := "Bem vindo " + message.Message.From.FirstName + " ao modulo Javis para armazenamento de lista, ainda estou em construção, em breve estarei em funcionamento."
 
 	service.SendToTelegramChat(message.Message.Chat.ID, text)
 
