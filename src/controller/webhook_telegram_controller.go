@@ -8,7 +8,7 @@ import (
 	"things.i.need.to.buy/src/service"
 )
 
-type MemoryMessages []string
+type MemoryMessages []service.Update
 
 //Global declaration
 var (
@@ -24,9 +24,8 @@ func TelegramWebhook(responseWriter http.ResponseWriter, request *http.Request) 
 	}
 
 	message, _ := service.ParseTelegramMessage(request)
-	text := message.Message.Contact.PhoneNumber
 
-	instance = append(instance, text)
+	instance = append(instance, *message)
 
 	io.WriteString(responseWriter, fmt.Sprint(instance))
 }
