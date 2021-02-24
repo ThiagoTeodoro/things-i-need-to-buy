@@ -4,11 +4,9 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-
-	"things.i.need.to.buy/src/service"
 )
 
-type MemoryMessages []service.Update
+type MemoryMessages []http.Request
 
 //Global declaration
 var (
@@ -23,9 +21,9 @@ func TelegramWebhook(responseWriter http.ResponseWriter, request *http.Request) 
 		instance = make(MemoryMessages, 0, 1000)
 	}
 
-	message, _ := service.ParseTelegramMessage(request)
+	//message, _ := service.ParseTelegramMessage(request)
 
-	instance = append(instance, *message)
+	instance = append(instance, *request)
 
 	io.WriteString(responseWriter, fmt.Sprint(instance))
 }
