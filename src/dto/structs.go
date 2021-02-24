@@ -1,10 +1,4 @@
-package service
-
-import (
-	"encoding/json"
-	"log"
-	"net/http"
-)
+package dto
 
 //Update Struct to recive the messages from Telegram this is the Main Struct
 type Update struct {
@@ -30,18 +24,4 @@ type Contact struct {
 	FirstName   string `json:"first_name"`
 	UserID      int    `json:"user_id"`
 	Vcard       string `json:"vcard"`
-}
-
-//ParseTelegramMessage function to parse the Telegram Messages
-func ParseTelegramMessage(request *http.Request) (*Update, error) {
-	var update Update
-
-	//To decode the Body from request on your struct Update
-	if err := json.NewDecoder(request.Body).Decode(&update); err != nil {
-
-		log.Printf("Error when the app try Parse the Telegram Message, %s", err.Error())
-		return nil, err
-	}
-
-	return &update, nil
 }

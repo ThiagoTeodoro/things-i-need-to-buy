@@ -8,24 +8,13 @@ import (
 	"things.i.need.to.buy/src/service"
 )
 
-type MemoryMessages []service.Update
-
-//Global declaration
-var (
-	instance MemoryMessages
-)
-
-//GetMainEntrypoint Function to responde the http get on '/telegram/webhook'
+//TelegramWebhook Function to responde the http get on '/telegram/webhook'
 func TelegramWebhook(responseWriter http.ResponseWriter, request *http.Request) {
 
-	//Insure the creation
-	if instance == nil {
-		instance = make(MemoryMessages, 0, 1000)
-	}
+	message, _ := service.TelegramMessageParse(request)
+	text := "Bem vindo ao modulo Javis para armazenamento de lista, ainda estou em construção, em breve estarei em funcionamento."
 
-	message, _ := service.ParseTelegramMessage(request)
+	service.SendToTelegramChat(message.Message.Chat.ID, text)
 
-	instance = append(instance, *message)
-
-	io.WriteString(responseWriter, fmt.Sprint(instance))
+	io.WriteString(responseWriter, fmt.Sprint(text))
 }
