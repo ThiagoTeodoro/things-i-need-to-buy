@@ -11,5 +11,5 @@ func TelegramWebhook(responseWriter http.ResponseWriter, request *http.Request) 
 
 	message, _ := service.TelegramMessageParse(request)
 
-	service.SendToTelegramChat(message.Message.Chat.ID, service.TelegramDecisionMaker(message.Message.Text))
+	service.SendToTelegramChat(message.Message.Chat.ID, service.TelegramDecisionMaker(message.Message))
 }
