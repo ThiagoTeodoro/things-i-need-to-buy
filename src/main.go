@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
-	"things.i.need.to.buy/src/database"
 	"things.i.need.to.buy/src/router"
 )
 
@@ -26,9 +25,6 @@ func main() {
 
 	//This port is requirement buy Heroku configs.
 	port := os.Getenv("PORT")
-	//port = "8080"
-
-	database.Connect()
 
 	//Create a goroutine
 	server := make(chan bool)
