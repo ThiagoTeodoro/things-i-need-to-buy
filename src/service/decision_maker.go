@@ -3,6 +3,7 @@ package service
 import (
 	"strings"
 
+	"things.i.need.to.buy/src/database"
 	"things.i.need.to.buy/src/dto"
 )
 
@@ -17,6 +18,8 @@ func TelegramDecisionMaker(msg dto.Message) string {
 
 	case strings.HasPrefix(msg.Text, "/add "):
 
+		db := database.Connect()
+		db.Close()
 		// //Sanatize
 		// description := strings.ReplaceAll(msg.Text, "/add ", "")
 		// parts := strings.Split(description, " ")
@@ -28,7 +31,7 @@ func TelegramDecisionMaker(msg dto.Message) string {
 
 		// return fmt.Sprintf("O item %d foi cadastro na nossa base de dados.", repository.InsertItem(msg.From.UserName, description, value))
 
-		return "ok"
+		return "OK"
 
 	case strings.HasPrefix(msg.Text, "/delete "):
 
