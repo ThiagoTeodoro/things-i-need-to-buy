@@ -24,9 +24,13 @@ func TelegramDecisionMaker(msg dto.Message) string {
 		description := strings.ReplaceAll(msg.Text, "/add ", "")
 		parts := strings.Split(description, " ")
 		description = parts[0]
-		value, err := strconv.ParseFloat(parts[1], 64)
+
+		value, err := strconv.ParseFloat(
+			strings.ReplaceAll(parts[1], ",", "."),
+			64)
+
 		if err != nil {
-			panic(err)
+			println(err)
 		}
 
 		return fmt.Sprintf("O item %d foi cadastro na nossa base de dados.", repository.InsertItem(msg.From.UserName, description, value))
