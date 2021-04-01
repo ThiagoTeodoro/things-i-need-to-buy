@@ -45,7 +45,7 @@ func TelegramDecisionMaker(msg dto.Message) string {
 
 		for i, item := range repository.GetAllItems(msg.From.UserName) {
 
-			result = result + fmt.Sprint("[%d] %s %f", i, item.Description, item.Value)
+			result = result + fmt.Sprintf("[%d] %s %f \n", i, item.Description, item.Value)
 		}
 
 		return result
