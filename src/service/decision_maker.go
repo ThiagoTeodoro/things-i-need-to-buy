@@ -1,12 +1,9 @@
 package service
 
 import (
-	"fmt"
-	"strconv"
 	"strings"
 
 	"things.i.need.to.buy/src/dto"
-	"things.i.need.to.buy/src/repository"
 )
 
 //TelegramDecisionMaker - To response, and make actino by text send by user.
@@ -20,16 +17,18 @@ func TelegramDecisionMaker(msg dto.Message) string {
 
 	case strings.HasPrefix(msg.Text, "/add "):
 
-		//Sanatize
-		description := strings.ReplaceAll(msg.Text, "/add ", "")
-		parts := strings.Split(description, " ")
-		description = parts[0]
-		value, err := strconv.ParseFloat(parts[1], 64)
-		if err != nil {
-			panic(err)
-		}
+		// //Sanatize
+		// description := strings.ReplaceAll(msg.Text, "/add ", "")
+		// parts := strings.Split(description, " ")
+		// description = parts[0]
+		// value, err := strconv.ParseFloat(parts[1], 64)
+		// if err != nil {
+		// 	panic(err)
+		// }
 
-		return fmt.Sprintf("O item %d foi cadastro na nossa base de dados.", repository.InsertItem(msg.From.UserName, description, value))
+		// return fmt.Sprintf("O item %d foi cadastro na nossa base de dados.", repository.InsertItem(msg.From.UserName, description, value))
+
+		return "ok"
 
 	case strings.HasPrefix(msg.Text, "/delete "):
 
