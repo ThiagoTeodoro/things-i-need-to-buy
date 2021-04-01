@@ -39,6 +39,16 @@ func TelegramDecisionMaker(msg dto.Message) string {
 
 		return ""
 
+	case strings.HasPrefix(msg.Text, "/list "):
+
+		var result string = ""
+
+		for i, item := range repository.GetAllItems(msg.From.UserName) {
+
+			result = result + fmt.Sprint("[%d] %s %f", i, item.Description, item.Value)
+		}
+
+		return result
 	default:
 
 		return "Que pena, não consegui te entender, vou registar pra melhorar minhas funções."
