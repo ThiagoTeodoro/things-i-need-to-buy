@@ -31,6 +31,8 @@ func TelegramDecisionMaker(msg dto.Message) string {
 
 		// return fmt.Sprintf("O item %d foi cadastro na nossa base de dados.", repository.InsertItem(msg.From.UserName, description, value))
 
+		return "ok"
+
 	case strings.HasPrefix(msg.Text, "/delete "):
 
 		return ""
