@@ -11,14 +11,7 @@ import (
 //Connect - To connect on database, don't forget to close the connection.
 func Connect() sql.DB {
 
-	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-		os.Getenv("db_host"),
-		os.Getenv("db_port"),
-		os.Getenv("db_user"),
-		os.Getenv("db_pass"),
-		os.Getenv("db_name"))
-
-	db, err := sql.Open("postgres", psqlInfo)
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 
 	if err != nil {
 		panic(err)
