@@ -12,9 +12,9 @@ import (
 func Connect() sql.DB {
 
 	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-		os.Getenv("host"),
+		os.Getenv("db_host"),
 		os.Getenv("db_port"),
-		os.Getenv("user"),
+		os.Getenv("db_user"),
 		os.Getenv("db_pass"),
 		os.Getenv("db_name"))
 
