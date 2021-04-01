@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"os"
 
@@ -24,6 +25,10 @@ func main() {
 
 	//This port is requirement buy Heroku configs.
 	port := os.Getenv("PORT")
-	//port = "8080"
-	http.ListenAndServe(":"+port, &app.Router)
+
+	//Create a goroutine
+	server := make(chan bool)
+	log.Printf("Server started at port %v", port)
+	go log.Fatal(http.ListenAndServe(":"+port, &app.Router))
+	<-server
 }
